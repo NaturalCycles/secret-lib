@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/NaturalCycles/secret-lib/compare/v1.0.0...v1.0.1) (2019-03-08)
+
+
+### Bug Fixes
+
+* support binary files (was broken due to base64) ([ef98eb0](https://github.com/NaturalCycles/secret-lib/commit/ef98eb0))
+
 # 1.0.0 (2019-03-08)
 
 
