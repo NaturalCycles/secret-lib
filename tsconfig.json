@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "es2018",
+    "module": "commonjs",
+    "lib": ["dom", "es2018"],
+    "sourceMap": false,
+    "outDir": "./dist",
+    "declaration": false,
+
+    "strict": true,
+
+    "moduleResolution": "node",
+    "rootDir": "./src",
+
+    "importHelpers": true,
+
+    "experimentalDecorators": true
+  },
+  "include": ["src"]
+}
