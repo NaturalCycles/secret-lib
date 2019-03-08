@@ -7,7 +7,7 @@ export async function secretsGenKeyCLI (): Promise<void> {
     default: 256,
   }).argv
 
-  const key = await securityService.generateSecretKey(sizeBytes)
+  const key = await securityService.generateSecretKeyBase64(sizeBytes)
 
   console.log('\nSECRET_ENCRYPTION_KEY:\n')
   console.log(key, '\n')

@@ -8,13 +8,13 @@ import { securityService } from './security.service'
 export async function secretsEncryptCLI (): Promise<void> {
   const cwd = process.cwd()
 
-  const { dir, encKey, algorithm } = yargs
+  const { dir, encKeyBase64, algorithm } = yargs
     .option('dir', {
       type: 'string',
       // demandOption: true,
       default: `${cwd}/secret`,
     })
-    .option('encKey', {
+    .option('encKeyBase64', {
       type: 'string',
       demandOption: true,
       default: process.env.SECRET_ENCRYPTION_KEY!,
@@ -24,9 +24,7 @@ export async function secretsEncryptCLI (): Promise<void> {
       default: 'aes-256-cbc',
     }).argv
 
-  // console.log({dir, encKey, algorithm})
-
-  await secretsEncrypt(dir, encKey, algorithm)
+  await secretsEncrypt(dir, encKeyBase64, algorithm)
 }
 
 /**
@@ -35,7 +33,7 @@ export async function secretsEncryptCLI (): Promise<void> {
  */
 export async function secretsEncrypt (
   dir: string,
-  encKey: string,
+  encKeyBase64: string,
   algorithm?: string,
 ): Promise<void> {
   const patterns = [
@@ -46,7 +44,7 @@ export async function secretsEncrypt (
 
   await pMap(filenames, async filename => {
     const plain = await fs.readFile(filename)
-    const enc = securityService.encryptBuffer(plain, encKey, algorithm)
+    const enc = await securityService.encryptBuffer(plain, encKeyBase64, algorithm)
 
     const encFilename = `${filename}.enc`
     await fs.writeFile(encFilename, enc)

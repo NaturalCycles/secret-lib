@@ -13,6 +13,19 @@
 - Opinionated, based on directory structure conventions
 - Zero dependencies, light (few kilobytes size)
 
+# Encryption
+
+Based on [Stronger Encryption and Decryption in Node.js](http://vancelucas.com/blog/stronger-encryption-and-decryption-in-node-js/).
+
+`aes-256-cbc` algorithm is used by default.
+
+Random initialization vector (IV) is used, prepended to the encrypted file (first 16 bytes).
+
+Encrypted file is stored in binary format (Buffer), containing concatenated (byte range in brackets):
+
+- IV (0, 16)
+- Payload (16, ...)
+
 # Install
 
 Globally (e.g in CI environment):
