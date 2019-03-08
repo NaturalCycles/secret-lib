@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/NaturalCycles/secret-lib/compare/v1.0.1...v1.1.0) (2019-03-08)
+
+
+### Features
+
+* stronger encryption by using random IV ([17f7153](https://github.com/NaturalCycles/secret-lib/commit/17f7153))
+
 ## [1.0.1](https://github.com/NaturalCycles/secret-lib/compare/v1.0.0...v1.0.1) (2019-03-08)
 
 
