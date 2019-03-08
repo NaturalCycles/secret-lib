@@ -38,8 +38,8 @@ export async function secretsDecrypt (
   const filenames = await globby(patterns)
 
   await pMap(filenames, async filename => {
-    const enc = await fs.readFile(filename, 'utf8')
-    const plain = securityService.decryptString(enc, encKey, algorithm)
+    const enc = await fs.readFile(filename)
+    const plain = securityService.decryptBuffer(enc, encKey, algorithm)
 
     const plainFilename = filename.substr(0, filename.length - '.enc'.length)
     await fs.writeFile(plainFilename, plain)

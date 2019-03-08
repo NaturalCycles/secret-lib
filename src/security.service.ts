@@ -13,30 +13,32 @@ class SecurityService {
     return new Buffer(s).toString('base64')
   }
 
-  private getDecipher (secretKey: string, algorithm: string): crypto.Decipher {
+  encryptString (str: string, secretKey: string, algorithm = 'aes-256-cbc'): string {
     const key = this.md5(secretKey)
     const iv = this.md5(secretKey + key).slice(0, 16)
-    return crypto.createDecipheriv(algorithm, key, iv)
-  }
-
-  private getCipher (secretKey: string, algorithm: string): crypto.Cipher {
-    const key = this.md5(secretKey)
-    const iv = this.md5(secretKey + key).slice(0, 16)
-    return crypto.createCipheriv(algorithm, key, iv)
+    const cipher = crypto.createCipheriv(algorithm, key, iv)
+    return [cipher.update(str, 'utf8', 'base64'), cipher.final('base64')].join('')
   }
 
   decryptString (str: string, secretKey: string, algorithm = 'aes-256-cbc'): string {
-    if (!secretKey) throw new Error('secretKey is missing')
-    const decipher = this.getDecipher(secretKey, algorithm)
-    let decrypted = decipher.update(str, 'base64', 'utf8')
-    return (decrypted += decipher.final('utf8'))
+    const key = this.md5(secretKey)
+    const iv = this.md5(secretKey + key).slice(0, 16)
+    const decipher = crypto.createDecipheriv(algorithm, key, iv)
+    return [decipher.update(str, 'base64', 'utf8'), decipher.final('utf8')].join('')
   }
 
-  encryptString (str: string, secretKey: string, algorithm = 'aes-256-cbc'): string {
-    if (!secretKey) throw new Error('secretKey is missing')
-    const cipher = this.getCipher(secretKey, algorithm)
-    let encrypted = cipher.update(str, 'utf8', 'base64')
-    return (encrypted += cipher.final('base64'))
+  encryptBuffer (input: Buffer, secretKey: string, algorithm = 'aes-256-cbc'): Buffer {
+    const key = this.md5(secretKey)
+    const iv = this.md5(secretKey + key).slice(0, 16)
+    const cipher = crypto.createCipheriv(algorithm, key, iv)
+    return Buffer.concat([cipher.update(input), cipher.final()])
+  }
+
+  decryptBuffer (input: Buffer, secretKey: string, algorithm = 'aes-256-cbc'): Buffer {
+    const key = this.md5(secretKey)
+    const iv = this.md5(secretKey + key).slice(0, 16)
+    const decipher = crypto.createDecipheriv(algorithm, key, iv)
+    return Buffer.concat([decipher.update(input), decipher.final()])
   }
 
   async generateSecretKey (sizeBytes = 256): Promise<string> {

@@ -45,8 +45,8 @@ export async function secretsEncrypt (
   const filenames = await globby(patterns)
 
   await pMap(filenames, async filename => {
-    const plain = await fs.readFile(filename, 'utf8')
-    const enc = securityService.encryptString(plain, encKey, algorithm)
+    const plain = await fs.readFile(filename)
+    const enc = securityService.encryptBuffer(plain, encKey, algorithm)
 
     const encFilename = `${filename}.enc`
     await fs.writeFile(encFilename, enc)
