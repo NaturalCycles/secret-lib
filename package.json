@@ -28,8 +28,14 @@
     "typescript": "^3.1.3"
   },
   "files": [
-    "dist"
+    "dist",
+    "src",
+    "!src/test",
+    "!src/**/*.test.ts",
+    "!src/**/__snapshots__"
   ],
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "bin": {
     "secrets-gen-key": "dist/bin/secrets-gen-key.js",
     "secrets-encrypt": "dist/bin/secrets-encrypt.js",

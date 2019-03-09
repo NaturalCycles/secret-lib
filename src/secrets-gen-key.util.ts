@@ -1,5 +1,5 @@
 import * as yargs from 'yargs'
-import { securityService } from './security.service'
+import { generateSecretKeyBase64 } from './security.util'
 
 export async function secretsGenKeyCLI (): Promise<void> {
   const { sizeBytes } = yargs.option('sizeBytes', {
@@ -7,7 +7,7 @@ export async function secretsGenKeyCLI (): Promise<void> {
     default: 256,
   }).argv
 
-  const key = await securityService.generateSecretKeyBase64(sizeBytes)
+  const key = await generateSecretKeyBase64(sizeBytes)
 
   console.log('\nSECRET_ENCRYPTION_KEY:\n')
   console.log(key, '\n')

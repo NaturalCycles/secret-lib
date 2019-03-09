@@ -1,6 +1,6 @@
 ## @naturalcycles/secret-lib
 
-> Opinionated CLI tool to encrypt/decrypt secret files
+> Opinionated CLI tool and Node.js API to encrypt/decrypt secret files
 
 [![npm](https://img.shields.io/npm/v/@naturalcycles/secret-lib/latest.svg)](https://www.npmjs.com/package/@naturalcycles/secret-lib)
 [![](https://circleci.com/gh/NaturalCycles/secret-lib.svg?style=shield&circle-token=cbb20b471eb9c1d5ed975e28c2a79a45671d78ea)](https://circleci.com/gh/NaturalCycles/secret-lib)
@@ -11,7 +11,8 @@
 - Simple to install via npm (`npm i -g @naturalcycles/secret-enc-lib` or `yarn global add @naturalcycles/secret-enc-lib`)
 - Scripts immediately available in global \$PATH (if installed globally)
 - Opinionated, based on directory structure conventions
-- Zero dependencies, light (few kilobytes size)
+- Light (few dependencies)
+- Exposes Node.js API (with types) so you can programmaticaly use same function that CLI provides (only if you want to)
 
 # Encryption
 

@@ -3,9 +3,9 @@
     "target": "es2018",
     "module": "commonjs",
     "lib": ["dom", "es2018"],
-    "sourceMap": false,
+    "sourceMap": true,
+    "declaration": true,
     "outDir": "./dist",
-    "declaration": false,
 
     "strict": true,
 

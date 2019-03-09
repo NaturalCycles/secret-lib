@@ -2,7 +2,7 @@ import { pMap } from '@naturalcycles/promise-lib'
 import * as fs from 'fs-extra'
 import globby from 'globby'
 import * as path from 'path'
-import { securityService } from './security.service'
+import { encryptBuffer } from './security.util'
 import { getEncryptCLIParams } from './util'
 
 export async function secretsEncryptCLI (): Promise<void> {
@@ -28,7 +28,7 @@ export async function secretsEncrypt (
 
   await pMap(filenames, async filename => {
     const plain = await fs.readFile(filename)
-    const enc = await securityService.encryptBuffer(plain, encKey, algorithm)
+    const enc = await encryptBuffer(plain, encKey, algorithm)
 
     const encFilename = `${filename}.enc`
     await fs.writeFile(encFilename, enc)
