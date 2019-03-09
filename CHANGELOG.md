@@ -1,3 +1,11 @@
+# [1.2.0](https://github.com/NaturalCycles/secret-lib/compare/v1.1.0...v1.2.0) (2019-03-09)
+
+
+### Features
+
+* .env support, --encKeyVar to override env var name ([5e28060](https://github.com/NaturalCycles/secret-lib/commit/5e28060))
+* support /secret subfolders ([a736348](https://github.com/NaturalCycles/secret-lib/commit/a736348))
+
 # [1.1.0](https://github.com/NaturalCycles/secret-lib/compare/v1.0.1...v1.1.0) (2019-03-08)
 
 
