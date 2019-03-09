@@ -38,7 +38,7 @@ export async function secretsEncrypt (
 ): Promise<void> {
   const patterns = [
     dir, // target directory
-    `!${dir}/*.enc`, // excluding already encoded
+    `!${dir}/**/*.enc`, // excluding already encoded
   ]
   const filenames = await globby(patterns)
 

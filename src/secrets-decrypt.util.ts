@@ -33,7 +33,7 @@ export async function secretsDecrypt (
   algorithm?: string,
 ): Promise<void> {
   const patterns = [
-    `${dir}/*.enc`, // only encrypted files
+    `${dir}/**/*.enc`, // only encrypted files
   ]
   const filenames = await globby(patterns)
 
