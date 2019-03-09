@@ -2,27 +2,11 @@ import { pMap } from '@naturalcycles/promise-lib'
 import * as fs from 'fs-extra'
 import globby from 'globby'
 import * as path from 'path'
-import * as yargs from 'yargs'
 import { securityService } from './security.service'
+import { getEncryptCLIParams } from './util'
 
 export async function secretsDecryptCLI (): Promise<void> {
-  const cwd = process.cwd()
-
-  const { dir, encKey, algorithm } = yargs
-    .option('dir', {
-      type: 'string',
-      // demandOption: true,
-      default: `${cwd}/secret`,
-    })
-    .option('encKey', {
-      type: 'string',
-      demandOption: true,
-      default: process.env.SECRET_ENCRYPTION_KEY!,
-    })
-    .option('algorithm', {
-      type: 'string',
-      default: 'aes-256-cbc',
-    }).argv
+  const { dir, encKey, algorithm } = getEncryptCLIParams()
 
   await secretsDecrypt(dir, encKey, algorithm)
 }

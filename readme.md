@@ -43,6 +43,18 @@ Or locally (if in Node.js project):
 - `secrets-decrypt`: Decrypt all encrypted files (`*.enc`) in `./secret` folder. `.enc` extension is removed after encryption, files are
   overwritten.
 
+# Key
+
+Commands `secrets-encrypt` and `secrets-decrypt` need a key to perform an operation (generate it with `secrets-gen-key` first time).
+
+Key can be passed in one of the following ways, in order of preference:
+
+1. `--encKey myKey` CLI argument (overrides everything else)
+2. `SECRET_ENCRYPTION_KEY` environment variable.
+3. `SECRET_ENCRYPTION_KEY` in `.env` file in your project folder (`cwd`).
+
+Also, you can provide e.g `--encKeyVar SECRET_ENCRYPTION_KEY_B` - name of env variable to read key from.
+
 # Usage
 
 _All examples are for global installation. For local installations prepend the command with `yarn` (or `npm run`)._
@@ -55,13 +67,27 @@ Keep it secret, provide as env variable `SECRET_ENCRYPTION_KEY` to the following
 
 ### secrets-encrypt
 
-Encrypt all files (except already encrypted `*.enc`) in `./secret` folder. `.enc` is added to the file.
+Encrypt all files (except already encrypted `*.enc`) in `./secret` folder (and its subfolder).
+`.enc` is added to the file.
 
 Example: `secret1.json` will become `secret1.json.enc`.
 
 ### secrets-decrypt
 
-Decrypt all encrypted files (`*.enc`) in `./secret` folder. `.enc` extension is removed after encryption, files are
+Decrypt all encrypted files (`*.enc`) in `./secret` folder (and its subfolders).
+`.enc` extension is removed after encryption, files are
 overwritten.
 
 Example: `secret1.json.enc` will become `secret1.json`.
+
+# .gitignore
+
+Use [shared-module](https://github.com/NaturalCycles/shared-module) and `yarn update-from-shared-module`.
+
+Otherwise, this is the right config for `.gitignore`:
+
+```
+# All secrets are ignored, except encrypted
+/secret/**/*.*
+!/secret/**/*.enc
+```
