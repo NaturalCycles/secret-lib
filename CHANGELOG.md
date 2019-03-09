@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/NaturalCycles/secret-lib/compare/v1.2.0...v1.3.0) (2019-03-09)
+
+
+### Features
+
+* expose API ([5e6bfeb](https://github.com/NaturalCycles/secret-lib/commit/5e6bfeb))
+
 # [1.2.0](https://github.com/NaturalCycles/secret-lib/compare/v1.1.0...v1.2.0) (2019-03-09)
 
 
