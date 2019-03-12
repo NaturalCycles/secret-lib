@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/NaturalCycles/secret-lib/compare/v1.3.0...v1.4.0) (2019-03-12)
+
+
+### Features
+
+* support multiple dirs to encrypt/decrypt ([8444ae7](https://github.com/NaturalCycles/secret-lib/commit/8444ae7))
+
 # [1.3.0](https://github.com/NaturalCycles/secret-lib/compare/v1.2.0...v1.3.0) (2019-03-09)
 
 

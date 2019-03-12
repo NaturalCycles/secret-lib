@@ -1,6 +1,6 @@
 {
   "name": "@naturalcycles/secret-lib",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "",
   "scripts": {
     "secrets-gen-key": "tsn ./src/bin/secrets-gen-key.ts",
