@@ -3,12 +3,12 @@ import * as fs from 'fs-extra'
 import globby from 'globby'
 import * as path from 'path'
 import { decryptBuffer } from './security.util'
-import { getEncryptCLIParams } from './util'
+import { getEncryptCLIOptions } from './util'
 
 export async function secretsDecryptCLI (): Promise<void> {
-  const { dirs, encKey, algorithm } = getEncryptCLIParams()
+  const { dirs, encKey, algorithm, del } = getEncryptCLIOptions()
 
-  await pMap(dirs, dir => secretsDecrypt(dir, encKey, algorithm), { concurrency: 1 })
+  await pMap(dirs, dir => secretsDecrypt(dir, encKey, algorithm, del), { concurrency: 1 })
 }
 
 /**
@@ -19,6 +19,7 @@ export async function secretsDecrypt (
   dir: string,
   encKey: string,
   algorithm?: string,
+  del?: boolean,
 ): Promise<void> {
   const patterns = [
     `${dir}/**/*.enc`, // only encrypted files
@@ -31,6 +32,11 @@ export async function secretsDecrypt (
 
     const plainFilename = filename.substr(0, filename.length - '.enc'.length)
     await fs.writeFile(plainFilename, plain)
+
+    if (del) {
+      await fs.unlink(filename)
+    }
+
     console.log(`${path.basename(filename)} > ${path.basename(plainFilename)}`)
   })
 

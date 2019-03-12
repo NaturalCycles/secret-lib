@@ -79,6 +79,7 @@ Options:
 - `--encKey` - provide encryption key
 - `--encKeyVar` - read encryption key from env variable with this name (default `SECRET_ENCRYPTION_KEY`).
 - `--algorithm` - encryption algorithm to use (default `aes-256-cbc`).
+- `--del` - delete source files after successful encryption. Be careful!
 - `help` - list possible options
 
 ### secrets-decrypt
