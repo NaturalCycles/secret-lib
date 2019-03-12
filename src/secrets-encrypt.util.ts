@@ -6,9 +6,9 @@ import { encryptBuffer } from './security.util'
 import { getEncryptCLIParams } from './util'
 
 export async function secretsEncryptCLI (): Promise<void> {
-  const { dir, encKey, algorithm } = getEncryptCLIParams()
+  const { dirs, encKey, algorithm } = getEncryptCLIParams()
 
-  await secretsEncrypt(dir, encKey, algorithm)
+  await pMap(dirs, dir => secretsEncrypt(dir, encKey, algorithm), { concurrency: 1 })
 }
 
 /**
@@ -35,5 +35,5 @@ export async function secretsEncrypt (
     console.log(`${path.basename(filename)} > ${path.basename(encFilename)}`)
   })
 
-  console.log(`encrypted ${filenames.length} files`)
+  console.log(`encrypted ${filenames.length} files in ${dir}`)
 }

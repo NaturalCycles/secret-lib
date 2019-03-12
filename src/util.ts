@@ -1,7 +1,7 @@
 import * as yargs from 'yargs'
 
 export interface EncryptCLIParams {
-  dir: string
+  dirs: string[]
   encKey: string
   algorithm?: string
 }
@@ -11,28 +11,29 @@ export function getEncryptCLIParams (): EncryptCLIParams {
 
   require('dotenv').config()
 
-  let { dir, encKey, encKeyVar, algorithm } = yargs
-    .option('dir', {
-      type: 'string',
-      desc: 'Directory with secrets.',
+  let { dir, encKey, encKeyVar, algorithm } = yargs.options({
+    dir: {
+      type: 'array',
+      desc: 'Directory with secrets. Can be many.',
       // demandOption: true,
       default: `${cwd}/secret`,
-    })
-    .option('encKey', {
+    },
+    encKey: {
       type: 'string',
       desc: 'Encryption key',
       // demandOption: true,
       // default: process.env.SECRET_ENCRYPTION_KEY!,
-    })
-    .option('encKeyVar', {
+    },
+    encKeyVar: {
       type: 'string',
       desc: 'Env variable name to get `encKey` from.',
       default: 'SECRET_ENCRYPTION_KEY',
-    })
-    .option('algorithm', {
+    },
+    algorithm: {
       type: 'string',
       default: 'aes-256-cbc',
-    }).argv
+    },
+  }).argv
 
   if (!encKey) {
     encKey = process.env[encKeyVar]
@@ -46,5 +47,6 @@ export function getEncryptCLIParams (): EncryptCLIParams {
     }
   }
 
-  return { dir, encKey, algorithm }
+  // `as any` because @types/yargs can't handle string[] type properly
+  return { dirs: dir as any, encKey, algorithm }
 }

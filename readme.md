@@ -8,7 +8,7 @@
 
 # Features
 
-- Simple to install via npm (`npm i -g @naturalcycles/secret-enc-lib` or `yarn global add @naturalcycles/secret-enc-lib`)
+- Simple to install via npm (`npm i -g @naturalcycles/secret-lib` or `yarn global add @naturalcycles/secret-lib`)
 - Scripts immediately available in global \$PATH (if installed globally)
 - Opinionated, based on directory structure conventions
 - Light (few dependencies)
@@ -73,6 +73,14 @@ Encrypt all files (except already encrypted `*.enc`) in `./secret` folder (and i
 
 Example: `secret1.json` will become `secret1.json.enc`.
 
+Options:
+
+- `--dir` - directory to encrypt (default to `./secret`). Can provide many like `--dir dir1 dir2` or `--dir dir1 --dir dir2`.
+- `--encKey` - provide encryption key
+- `--encKeyVar` - read encryption key from env variable with this name (default `SECRET_ENCRYPTION_KEY`).
+- `--algorithm` - encryption algorithm to use (default `aes-256-cbc`).
+- `help` - list possible options
+
 ### secrets-decrypt
 
 Decrypt all encrypted files (`*.enc`) in `./secret` folder (and its subfolders).
@@ -80,6 +88,8 @@ Decrypt all encrypted files (`*.enc`) in `./secret` folder (and its subfolders).
 overwritten.
 
 Example: `secret1.json.enc` will become `secret1.json`.
+
+Options: same as `secrets-encrypt`.
 
 # .gitignore
 
