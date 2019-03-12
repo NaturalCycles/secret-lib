@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/NaturalCycles/secret-lib/compare/v1.4.0...v1.5.0) (2019-03-12)
+
+
+### Features
+
+* --del option to delete source files after operation ([92795cf](https://github.com/NaturalCycles/secret-lib/commit/92795cf))
+
 # [1.4.0](https://github.com/NaturalCycles/secret-lib/compare/v1.3.0...v1.4.0) (2019-03-12)
 
 
