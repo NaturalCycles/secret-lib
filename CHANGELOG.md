@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/NaturalCycles/secret-lib/compare/v1.5.0...v2.0.0) (2019-03-13)
+
+
+### Code Refactoring
+
+* --pattern for encrypt, --dir for decrypt ([fe6282e](https://github.com/NaturalCycles/secret-lib/commit/fe6282e))
+
+
+### BREAKING CHANGES
+
+* --pattern should be used instead of --dir for encryption
+
 # [1.5.0](https://github.com/NaturalCycles/secret-lib/compare/v1.4.0...v1.5.0) (2019-03-12)
 
 
