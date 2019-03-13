@@ -1,7 +1,7 @@
 import * as crypto from 'crypto'
-import * as util from 'util'
+import { promisify } from 'util'
 
-const randomBytes = util.promisify(crypto.randomBytes)
+const randomBytes = promisify(crypto.randomBytes)
 
 export function md5 (s: string | Buffer): string {
   return crypto

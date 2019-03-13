@@ -2,13 +2,67 @@ import { pMap } from '@naturalcycles/promise-lib'
 import * as fs from 'fs-extra'
 import globby from 'globby'
 import * as path from 'path'
+import * as yargs from 'yargs'
 import { decryptBuffer } from './security.util'
-import { getEncryptCLIOptions } from './util'
+
+export interface DecryptCLIOptions {
+  dir: string[]
+  encKey: string
+  algorithm?: string
+  del?: boolean
+}
 
 export async function secretsDecryptCLI (): Promise<void> {
-  const { dirs, encKey, algorithm, del } = getEncryptCLIOptions()
+  const { dir, encKey, algorithm, del } = getDecryptCLIOptions()
 
-  await pMap(dirs, dir => secretsDecrypt(dir, encKey, algorithm, del), { concurrency: 1 })
+  await secretsDecrypt(dir, encKey, algorithm, del)
+}
+
+export function getDecryptCLIOptions (): DecryptCLIOptions {
+  require('dotenv').config()
+
+  let { dir, encKey, encKeyVar, algorithm, del } = yargs.options({
+    dir: {
+      type: 'array',
+      desc: 'Directory with secrets. Can be many',
+      // demandOption: true,
+      default: './secret',
+    },
+    encKey: {
+      type: 'string',
+      desc: 'Encryption key',
+      // demandOption: true,
+      // default: process.env.SECRET_ENCRYPTION_KEY!,
+    },
+    encKeyVar: {
+      type: 'string',
+      desc: 'Env variable name to get `encKey` from.',
+      default: 'SECRET_ENCRYPTION_KEY',
+    },
+    algorithm: {
+      type: 'string',
+      default: 'aes-256-cbc',
+    },
+    del: {
+      type: 'boolean',
+      desc: 'Delete source files after encryption/decryption. Be careful!',
+    },
+  }).argv
+
+  if (!encKey) {
+    encKey = process.env[encKeyVar!]
+
+    if (encKey) {
+      console.log(`using encKey from env.${encKeyVar}`)
+    } else {
+      throw new Error(
+        `encKey is required. Can be provided as --encKey or env.SECRET_ENCRYPTION_KEY (see readme.md)`,
+      )
+    }
+  }
+
+  // `as any` because @types/yargs can't handle string[] type properly
+  return { dir: dir as any, encKey, algorithm, del }
 }
 
 /**
@@ -16,14 +70,13 @@ export async function secretsDecryptCLI (): Promise<void> {
  * Using provided encKey.
  */
 export async function secretsDecrypt (
-  dir: string,
+  dir: string[],
   encKey: string,
   algorithm?: string,
   del?: boolean,
 ): Promise<void> {
-  const patterns = [
-    `${dir}/**/*.enc`, // only encrypted files
-  ]
+  const patterns = dir.map(d => `${d}/**/*.enc`)
+
   const filenames = await globby(patterns)
 
   await pMap(filenames, async filename => {
@@ -37,8 +90,8 @@ export async function secretsDecrypt (
       await fs.unlink(filename)
     }
 
-    console.log(`${path.basename(filename)} > ${path.basename(plainFilename)}`)
+    console.log(`  ${path.basename(filename)} > ${path.basename(plainFilename)}`)
   })
 
-  console.log(`decrypted ${filenames.length} files in ${dir}`)
+  console.log(`decrypted ${filenames.length} files in ${dir.join(' ')}`)
 }

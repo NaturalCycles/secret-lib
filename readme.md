@@ -75,7 +75,7 @@ Example: `secret1.json` will become `secret1.json.enc`.
 
 Options:
 
-- `--dir` - directory to encrypt (default to `./secret`). Can provide many like `--dir dir1 dir2` or `--dir dir1 --dir dir2`.
+- `--pattern` - directory (pattern) to encrypt (default to `./secret`). Can provide many like `--pattern p1 p2` or `--pattern p1 --pattern p2`. Supports `globby` pattern, e.g `--pattern ./secret/**/*.txt`.
 - `--encKey` - provide encryption key
 - `--encKeyVar` - read encryption key from env variable with this name (default `SECRET_ENCRYPTION_KEY`).
 - `--algorithm` - encryption algorithm to use (default `aes-256-cbc`).
@@ -91,6 +91,8 @@ overwritten.
 Example: `secret1.json.enc` will become `secret1.json`.
 
 Options: same as `secrets-encrypt`.
+
+Except `--dir` is used instead of `--pattern`. Example: `--dir ./secret` will decrypt all `./secret/**/*.enc`.
 
 # .gitignore
 

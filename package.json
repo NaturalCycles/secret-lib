@@ -9,16 +9,16 @@
   },
   "dependencies": {
     "@naturalcycles/promise-lib": "^2.0.0",
-    "dotenv": "^6.2.0",
+    "dotenv": "^7.0.0",
     "globby": "^9.1.0",
     "yargs": "^13.2.2"
   },
   "devDependencies": {
     "@naturalcycles/semantic-release": "^1.0.0",
-    "@naturalcycles/shared-module": "^3.2.0",
+    "@naturalcycles/shared-module": "^4.0.1",
     "@types/dotenv": "^6.1.0",
     "@types/jest": "^24.0.6",
-    "@types/node": "^10.11.7",
+    "@types/node": "^11.0.0",
     "jest": "^24.1.0",
     "jest-junit": "^6.2.1",
     "prettier": "^1.14.3",
@@ -32,6 +32,7 @@
     "src",
     "!src/test",
     "!src/**/*.test.ts",
+    "!src/**/__exclude",
     "!src/**/__snapshots__"
   ],
   "main": "dist/index.js",
