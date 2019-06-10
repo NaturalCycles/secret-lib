@@ -11,6 +11,7 @@
     "@naturalcycles/promise-lib": "^2.0.0",
     "dotenv": "^7.0.0",
     "globby": "^9.1.0",
+    "handlebars": "4.1.2",
     "yargs": "^13.2.2"
   },
   "devDependencies": {
