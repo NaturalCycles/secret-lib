@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/NaturalCycles/secret-lib/compare/v2.0.0...v2.0.1) (2019-08-16)
+
+
+### Bug Fixes
+
+* lodash security updates ([56ba093](https://github.com/NaturalCycles/secret-lib/commit/56ba093))
+
 # [2.0.0](https://github.com/NaturalCycles/secret-lib/compare/v1.5.0...v2.0.0) (2019-03-13)
 
 
