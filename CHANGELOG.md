@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/NaturalCycles/secret-lib/compare/v2.0.2...v2.1.0) (2019-08-24)
+
+
+### Features
+
+* use security.util from nodejs-lib ([5beeafd](https://github.com/NaturalCycles/secret-lib/commit/5beeafd))
+
 ## [2.0.2](https://github.com/NaturalCycles/secret-lib/compare/v2.0.1...v2.0.2) (2019-08-24)
 
 
