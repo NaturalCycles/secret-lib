@@ -1,30 +1,8 @@
+import { md5 } from '@naturalcycles/nodejs-lib'
 import * as crypto from 'crypto'
 import { promisify } from 'util'
 
 const randomBytes = promisify(crypto.randomBytes)
-
-export function md5 (s: string | Buffer): string {
-  return crypto
-    .createHash('md5')
-    .update(s)
-    .digest('hex')
-}
-
-export function stringToBase64 (s: string): string {
-  return Buffer.from(s, 'utf8').toString('base64')
-}
-
-export function base64ToString (strBase64: string): string {
-  return Buffer.from(strBase64, 'base64').toString('utf8')
-}
-
-export function bufferToBase64 (b: Buffer): string {
-  return b.toString('base64')
-}
-
-export function base64ToBuffer (strBase64: string): Buffer {
-  return Buffer.from(strBase64, 'base64')
-}
 
 function aes256Key (secretKeyBase64: string): string {
   // md5 to match aes-256 key length of 32 bytes

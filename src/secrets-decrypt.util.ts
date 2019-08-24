@@ -1,6 +1,6 @@
-import { pMap } from '@naturalcycles/promise-lib'
+import { pMap } from '@naturalcycles/js-lib'
 import * as fs from 'fs-extra'
-import globby from 'globby'
+import * as globby from 'globby'
 import * as path from 'path'
 import * as yargs from 'yargs'
 import { decryptBuffer } from './security.util'
