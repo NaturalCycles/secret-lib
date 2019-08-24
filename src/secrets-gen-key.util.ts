@@ -1,5 +1,5 @@
+import { generateSecretKeyBase64 } from '@naturalcycles/nodejs-lib'
 import * as yargs from 'yargs'
-import { generateSecretKeyBase64 } from './security.util'
 
 export async function secretsGenKeyCLI (): Promise<void> {
   const { sizeBytes } = yargs.option('sizeBytes', {

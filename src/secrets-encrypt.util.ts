@@ -1,9 +1,9 @@
 import { pMap } from '@naturalcycles/js-lib'
+import { encryptRandomIVBuffer } from '@naturalcycles/nodejs-lib'
 import * as fs from 'fs-extra'
 import * as globby from 'globby'
 import * as path from 'path'
 import * as yargs from 'yargs'
-import { encryptBuffer } from './security.util'
 
 export interface EncryptCLIOptions {
   pattern: string[]
@@ -83,7 +83,7 @@ export async function secretsEncrypt (
 
   await pMap(filenames, async filename => {
     const plain = await fs.readFile(filename)
-    const enc = await encryptBuffer(plain, encKey, algorithm)
+    const enc = await encryptRandomIVBuffer(plain, encKey, algorithm)
 
     const encFilename = `${filename}.enc`
     await fs.writeFile(encFilename, enc)

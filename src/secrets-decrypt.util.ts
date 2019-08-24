@@ -1,9 +1,9 @@
 import { pMap } from '@naturalcycles/js-lib'
+import { decryptRandomIVBuffer } from '@naturalcycles/nodejs-lib'
 import * as fs from 'fs-extra'
 import * as globby from 'globby'
 import * as path from 'path'
 import * as yargs from 'yargs'
-import { decryptBuffer } from './security.util'
 
 export interface DecryptCLIOptions {
   dir: string[]
@@ -81,7 +81,7 @@ export async function secretsDecrypt (
 
   await pMap(filenames, async filename => {
     const enc = await fs.readFile(filename)
-    const plain = decryptBuffer(enc, encKey, algorithm)
+    const plain = decryptRandomIVBuffer(enc, encKey, algorithm)
 
     const plainFilename = filename.substr(0, filename.length - '.enc'.length)
     await fs.writeFile(plainFilename, plain)
