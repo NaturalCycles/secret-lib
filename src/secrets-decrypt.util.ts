@@ -1,5 +1,6 @@
 import { pMap } from '@naturalcycles/js-lib'
 import { decryptRandomIVBuffer } from '@naturalcycles/nodejs-lib'
+import c from 'chalk'
 import * as fs from 'fs-extra'
 import * as globby from 'globby'
 import * as path from 'path'
@@ -53,7 +54,7 @@ export function getDecryptCLIOptions (): DecryptCLIOptions {
     encKey = process.env[encKeyVar!]
 
     if (encKey) {
-      console.log(`using encKey from env.${encKeyVar}`)
+      console.log(`using encKey from env.${c.dim(encKeyVar)}`)
     } else {
       throw new Error(
         `encKey is required. Can be provided as --encKey or env.SECRET_ENCRYPTION_KEY (see readme.md)`,
@@ -93,5 +94,7 @@ export async function secretsDecrypt (
     console.log(`  ${path.basename(filename)} > ${path.basename(plainFilename)}`)
   })
 
-  console.log(`decrypted ${filenames.length} files in ${dir.join(' ')}`)
+  console.log(
+    `decrypted ${c.bold.white(String(filenames.length))} files in ${c.dim(dir.join(' '))}`,
+  )
 }
