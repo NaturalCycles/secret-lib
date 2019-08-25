@@ -1,3 +1,10 @@
+## [2.1.1](https://github.com/NaturalCycles/secret-lib/compare/v2.1.0...v2.1.1) (2019-08-25)
+
+
+### Bug Fixes
+
+* colors ([c869ef6](https://github.com/NaturalCycles/secret-lib/commit/c869ef6))
+
 # [2.1.0](https://github.com/NaturalCycles/secret-lib/compare/v2.0.2...v2.1.0) (2019-08-24)
 
 
