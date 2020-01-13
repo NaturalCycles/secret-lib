@@ -1,6 +1,6 @@
 import { pMap } from '@naturalcycles/js-lib'
 import { encryptRandomIVBuffer } from '@naturalcycles/nodejs-lib'
-import c from 'chalk'
+import * as c from 'chalk'
 import * as fs from 'fs-extra'
 import * as globby from 'globby'
 import * as path from 'path'
@@ -13,18 +13,19 @@ export interface EncryptCLIOptions {
   del?: boolean
 }
 
-export async function secretsEncryptCLI (): Promise<void> {
+export async function secretsEncryptCLI(): Promise<void> {
   const { pattern, encKey, algorithm, del } = getEncryptCLIOptions()
 
   await secretsEncrypt(pattern, encKey, algorithm, del)
 }
 
-export function getEncryptCLIOptions (): EncryptCLIOptions {
+export function getEncryptCLIOptions(): EncryptCLIOptions {
   require('dotenv').config()
 
   let { pattern, encKey, encKeyVar, algorithm, del } = yargs.options({
     pattern: {
-      type: 'array',
+      type: 'string',
+      array: true,
       desc: 'Globby pattern for secrets. Can be many.',
       // demandOption: true,
       default: './secret/**',
@@ -54,7 +55,7 @@ export function getEncryptCLIOptions (): EncryptCLIOptions {
     encKey = process.env[encKeyVar!]
 
     if (encKey) {
-      console.log(`using encKey from env.${c.dim(encKeyVar)}`)
+      console.log(`using encKey from process.env.${c.dim(encKeyVar)}`)
     } else {
       throw new Error(
         `encKey is required. Can be provided as --encKey or env.SECRET_ENCRYPTION_KEY (see readme.md)`,
@@ -70,7 +71,7 @@ export function getEncryptCLIOptions (): EncryptCLIOptions {
  * Encrypts all files in given directory (except *.enc), saves encrypted versions as filename.ext.enc.
  * Using provided encKey.
  */
-export async function secretsEncrypt (
+export async function secretsEncrypt(
   pattern: string[],
   encKey: string,
   algorithm?: string,

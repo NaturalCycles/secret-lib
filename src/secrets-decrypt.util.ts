@@ -1,6 +1,6 @@
 import { pMap } from '@naturalcycles/js-lib'
 import { decryptRandomIVBuffer } from '@naturalcycles/nodejs-lib'
-import c from 'chalk'
+import * as c from 'chalk'
 import * as fs from 'fs-extra'
 import * as globby from 'globby'
 import * as path from 'path'
@@ -13,13 +13,13 @@ export interface DecryptCLIOptions {
   del?: boolean
 }
 
-export async function secretsDecryptCLI (): Promise<void> {
+export async function secretsDecryptCLI(): Promise<void> {
   const { dir, encKey, algorithm, del } = getDecryptCLIOptions()
 
   await secretsDecrypt(dir, encKey, algorithm, del)
 }
 
-export function getDecryptCLIOptions (): DecryptCLIOptions {
+export function getDecryptCLIOptions(): DecryptCLIOptions {
   require('dotenv').config()
 
   let { dir, encKey, encKeyVar, algorithm, del } = yargs.options({
@@ -70,7 +70,7 @@ export function getDecryptCLIOptions (): DecryptCLIOptions {
  * Decrypts all files in given directory (*.enc), saves decrypted versions without ending `.enc`.
  * Using provided encKey.
  */
-export async function secretsDecrypt (
+export async function secretsDecrypt(
   dir: string[],
   encKey: string,
   algorithm?: string,

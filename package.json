@@ -10,14 +10,14 @@
   "dependencies": {
     "@naturalcycles/js-lib": "^8.6.1",
     "@naturalcycles/nodejs-lib": "^7.1.1",
-    "chalk": "^2.4.2",
+    "chalk": "^3.0.0",
     "dotenv": "^8.1.0",
-    "globby": "^10.0.1",
-    "yargs": "^14.0.0"
+    "globby": "^11.0.0",
+    "yargs": "^15.1.0"
   },
   "devDependencies": {
-    "@naturalcycles/dev-lib": "^9.0.2",
-    "@types/node": "^12.7.2",
+    "@naturalcycles/dev-lib": "^9.4.0",
+    "@types/node": "^13.1.6",
     "jest": "^24.1.0"
   },
   "resolutions": {
