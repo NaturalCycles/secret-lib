@@ -8,7 +8,7 @@
     "secrets-decrypt": "tsn ./src/bin/secrets-decrypt.ts"
   },
   "dependencies": {
-    "@naturalcycles/js-lib": "^9.0.0",
+    "@naturalcycles/js-lib": "^10.0.0",
     "@naturalcycles/nodejs-lib": "^7.1.1",
     "chalk": "^3.0.0",
     "dotenv": "^8.1.0",
