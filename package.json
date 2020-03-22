@@ -1,6 +1,6 @@
 {
   "name": "@naturalcycles/secret-lib",
-  "version": "2.3.1",
+  "version": "2.3.2",
   "description": "CLI tool and Node.js API to encrypt/decrypt secret files",
   "scripts": {
     "secrets-gen-key": "tsn ./src/bin/secrets-gen-key.ts",

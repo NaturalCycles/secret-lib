@@ -1,3 +1,10 @@
+## [2.3.2](https://github.com/NaturalCycles/secret-lib/compare/v2.3.1...v2.3.2) (2020-03-22)
+
+
+### Bug Fixes
+
+* deps ([3a16a11](https://github.com/NaturalCycles/secret-lib/commit/3a16a115fc363f0f60481eea5a57d71a610515ea))
+
 ## [2.3.1](https://github.com/NaturalCycles/secret-lib/compare/v2.3.0...v2.3.1) (2020-03-16)
 
 
