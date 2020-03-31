@@ -9,8 +9,7 @@
   },
   "dependencies": {
     "@naturalcycles/js-lib": "^10.0.0",
-    "@naturalcycles/nodejs-lib": "^8.0.0",
-    "chalk": "^3.0.0",
+    "@naturalcycles/nodejs-lib": "^9.1.1",
     "dotenv": "^8.1.0",
     "globby": "^11.0.0",
     "yargs": "^15.1.0"
