@@ -1,3 +1,10 @@
+# [2.4.0](https://github.com/NaturalCycles/secret-lib/compare/v2.3.2...v2.4.0) (2020-03-31)
+
+
+### Features
+
+* modernize ([e42086d](https://github.com/NaturalCycles/secret-lib/commit/e42086d056e87e566956bbfe8c1506bda83ffdb2))
+
 ## [2.3.2](https://github.com/NaturalCycles/secret-lib/compare/v2.3.1...v2.3.2) (2020-03-22)
 
 
