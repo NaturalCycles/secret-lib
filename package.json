@@ -8,8 +8,8 @@
     "secrets-decrypt": "tsn ./src/bin/secrets-decrypt.ts"
   },
   "dependencies": {
-    "@naturalcycles/js-lib": "^10.0.0",
-    "@naturalcycles/nodejs-lib": "^9.1.1",
+    "@naturalcycles/js-lib": "^11.1.0",
+    "@naturalcycles/nodejs-lib": "^10.0.0",
     "dotenv": "^8.1.0",
     "globby": "^11.0.0",
     "yargs": "^15.1.0"
